@@ -6,9 +6,11 @@
 
         <title>JSBC blacklist system</title>
         <!-- link app custom style -->
-        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('css/style.css') }}">
         <!-- link bootstrap style -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <!-- link font awesome -->
+        <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     </head>
     <body>
      @include('navbar.nav')
@@ -16,7 +18,11 @@
      @yield('content')
      @include('message.messages')
      </div>
+     <!-- add app js -->
+     <script src="{{asset('js/app.js')}}"></script>
      <!-- bootstrap js -->
      <script src="{{asset('js/bootstrap.min.js')}}"></script>
+     <!-- font awesome -->
+     <script src="{{asset('js/all.min.js')}}"></script>
     </body>
 </html>

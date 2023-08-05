@@ -9,6 +9,7 @@ use DB;
 
 class AuthController extends Controller
 {
+
     /**
      * displays the login view
      *
@@ -36,7 +37,6 @@ class AuthController extends Controller
         $password = $request->input('password');
         // checks if user credentials are valid
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            $request->authenticate();
             $request->session()->regenerate();
             return redirect('/dashboard')->with('success_message', 'you have logged in successfully');
         } else {
@@ -64,11 +64,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/login');
     }
 

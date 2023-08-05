@@ -4,9 +4,12 @@
     font-family: Raleway, sans-serif;
 }
 
+
+/** header & navbar **/
+
 header {
     width: 100%;
-    height: 60px;
+    height: 70px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -17,11 +20,15 @@ header {
     width: 100%;
 }
 
+.brand {
+    margin-left: 15px;
+}
+
 .navigation .container a {
     color: #08b608;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 17px;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 .navigation .container a:hover {
@@ -38,6 +45,14 @@ header {
     margin-left: 10px;
 }
 
+.user-name {
+    color: coral;
+    margin-top: 3px;
+}
+
+
+/** end header & navbar **/
+
 
 /** login **/
 
@@ -45,14 +60,144 @@ header {
     margin: 30px auto;
 }
 
-.login h1 {
+.login h3 {
     color: #08b608;
     font-weight: 400;
     font-size: 20px;
-    padding-left: 5px;
+    padding-left: 15px;
+}
+
+.login p {
+    padding-left: 16px;
 }
 
 .pull-xs-right {
     float: right;
     margin-top: 5px;
+    margin-right: 12px;
 }
+
+.input {
+    margin: 10px;
+}
+
+
+/** end login **/
+
+
+/** dashboard **/
+
+.sidebar {
+    height: auto;
+    width: 100%;
+    background-color: #fff;
+}
+
+.sidebar h4 {
+    color: #343a40;
+    margin: 30px auto 10px auto;
+}
+
+.dashboard_menu li {
+    list-style: none;
+    margin-left: 3px;
+}
+
+.dashboard_menu li a {
+    color: #08b608;
+    text-decoration: none;
+}
+
+
+/** end dashboard **/
+
+
+/** add student teacher **/
+
+.add-student-teacher {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-student-teacher h3 {
+    color: #343a40;
+    text-align: left;
+}
+
+.add-student-teacher p span {
+    color: #08b608;
+    font-weight: 500;
+    margin: 10px;
+}
+
+.import-csv {
+    display: none;
+}
+
+.import-csv.active {
+    display: block;
+}
+
+.file_upload {
+    padding-left: 12px;
+}
+
+.add-manually {
+    display: none;
+}
+
+.add-manually.active {
+    display: block;
+}
+
+
+/** end student teacher **/
+
+
+/**  student teacher list **/
+
+.student-teacher-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.btn {
+    color: #fff;
+}
+
+.students-lists {
+    margin-top: 20px;
+}
+
+.pagination {
+    margin-top: 10px;
+}
+
+.icon-1 {
+    color: coral;
+    padding-left: 2px;
+    margin-left: 40px;
+}
+
+
+/** end student teacher list **/
+
+
+/** edit **/
+
+.edit-info {
+    margin-top: 25px;
+}
+
+.edit-heading {
+    margin: 15px auto;
+    padding-left: 5px;
+}
+
+
+/** end edit **/
