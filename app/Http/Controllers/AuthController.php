@@ -40,7 +40,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect('/dashboard')->with('success_message', 'you have logged in successfully');
         } else {
-            return redirect('/login')->with('error_message', 'Invalid credentials');
+            return redirect('/')->with('error_message', 'Invalid credentials');
         }
 
     }
@@ -66,7 +66,7 @@ class AuthController extends Controller
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/');
     }
 
 }

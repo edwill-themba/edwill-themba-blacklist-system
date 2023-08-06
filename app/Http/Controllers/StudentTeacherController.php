@@ -14,7 +14,7 @@ class StudentTeacherController extends Controller
      */
     public function index()
     {
-        $student_teacher = DB::table('student_teachers')->paginate(50);
+        $student_teacher = DB::table('student_teachers')->orderBy('created_at', 'desc')->paginate(50);
         return view('pages.student_teacher')->with('student_teacher', $student_teacher);
     }
 
@@ -43,7 +43,7 @@ class StudentTeacherController extends Controller
             // remove the headings of the file
             $data = array_splice($file_content, 1);
             // split csv file if is bigger
-            $file_split = array_chunk($data, 500);
+            $file_split = array_chunk($data, 1000);
 
             foreach ($file_split as $key => $file_data) {
                 $file_name = resource_path('loading_files/' . time() . $key . '.csv');
@@ -59,7 +59,7 @@ class StudentTeacherController extends Controller
                 'city' => 'required|min:3|max:191',
                 'street_name' => 'required|min:3|max:191',
                 'city' => 'required|min:3|max:191',
-                'unversity' => 'required|min:3|max:191',
+                'unversity' => 'required|min:2|max:191',
             ]);
             // get data from user inputs
             $fname = $request->input('fname');
@@ -68,6 +68,8 @@ class StudentTeacherController extends Controller
             $city = $request->input('city');
             $street_name = $request->input('street_name');
             $unversity = $request->input('unversity');
+            $created_at = now();
+            $updated_at = now();
            
             // check if student exists
             $is_found = (new StudentTeacher())->is_student_found($fname);
@@ -82,7 +84,9 @@ class StudentTeacherController extends Controller
                 'province' => $province,
                 'city' => $city,
                 'street_name' => $street_name,
-                'unversity' => $unversity
+                'unversity' => $unversity,
+                'created_at' => $created_at,
+                'updated_at' => $updated_at
             ]);
             return redirect('/dashboard')->with('success_message', 'student teacher data was saved successfully');
         }

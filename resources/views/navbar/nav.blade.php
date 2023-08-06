@@ -19,7 +19,7 @@
               </li>
             @else
               <li>
-               <a href="/login" class="brand">Login</a>  
+               <a href="/" class="brand">Login</a>  
               </li>
             @endauth
           </ul>

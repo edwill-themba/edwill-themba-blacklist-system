@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BlackList;
 
 class School extends Model
 {
@@ -19,4 +20,11 @@ class School extends Model
 
     ];
 
+    /**
+     * has many relationship with blacklist
+     */
+    public function blacklist()
+    {
+        return $this->hasMany('App\Models\BlackList');
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Jobs\ProcessUpload;
 use Illuminate\Support\Facades\Redis;
+use App\Models\BlackList;
 use DB;
 
 class StudentTeacher extends Model
@@ -36,19 +37,7 @@ class StudentTeacher extends Model
         // get all the file saved
         $files = glob($directory_path);
         foreach ($files as $file) {
-            $data = array_map('str_getcsv', file($file));
-            foreach ($data as $record) {
-                self::updateOrCreate([
-                    'fname' => $record[0]
-                ], [
-                    'lname' => $record[1],
-                    'province' => $record[2],
-                    'city' => $record[3],
-                    'street_name' => $record[4],
-                    'unversity' => $record[5]
-                ]);
-            }
-            unlink($file);
+            ProcessUpload::dispatch($file);
         }
     }
 
@@ -65,6 +54,15 @@ class StudentTeacher extends Model
             ->first();
 
         return $student;
+    }
+
+
+    /**
+     * has many relationship with blacklist
+     */
+    public function blacklist()
+    {
+        return $this->hasMany('App\Models\BlackList');
     }
 
 }

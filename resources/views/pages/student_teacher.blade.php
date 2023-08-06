@@ -16,25 +16,33 @@
               </div>
                 <table class="table table-striped">
                     <tr>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Province</th>
-                      <th>City / Town</th>
-                      <th>Street Name</th>
-                      <th>University/College</th>
-                      <th>Show Edit</th>
-                      <th></th>
+                      <th class="table-title">First Name</th>
+                      <th class="table-title">Last Name</th>
+                      <th class="table-title">Province</th>
+                      <th class="table-title">City / Town</th>
+                      <th class="table-title">Street Name</th>
+                      <th class="table-title">University/College</th>
+                      <th class="table-title">BlackList</th>
+                      <th class="table-title">View BlackList</th>
+                      <th class="table-title">Show Edit</th>
+                      <th class="table-title">Delete</th>
                     </tr>
                   @foreach ($student_teacher as  $st)
                       <tr>
-                       <td>{{ $st->fname }}</td>
-                       <td>{{ $st->lname }}</td>
-                       <td>{{ $st->province }}</td>
-                       <td>{{ $st->city }}</td>
-                       <td>{{ $st->street_name }}</td>
-                       <td>{{ $st->unversity }}</td>
-                       <td><a href="/student_teacher/{{ $st->id }}"><i class="fas fa-pen icon-1"></i></a></td>
-                       <td>
+                       <td class="table-header">{{ $st->fname }}</td>
+                       <td class="table-header">{{ $st->lname }}</td>
+                       <td class="table-header">{{ $st->province }}</td>
+                       <td class="table-header">{{ $st->city }}</td>
+                       <td class="table-header">{{ $st->street_name }}</td>
+                       <td class="table-header">{{ $st->unversity }}</td>
+                       <td class="table-header" style="padding-left:40px;">
+                       <a href="/blacklist/{{ $st->id }}"><i class="fas fa-times blacklist-icon"></i></a>
+                       </td>
+                       <td class="table-header" style="padding-left:40px;">
+                          <a href="/student_blacklist/{{ $st->id }}"><i class="fas fa-times blacklist"></i></a>
+                       </td>
+                       <td class="table-header"><a href="/student_teacher/{{ $st->id }}"><i class="fas fa-pen icon-1"></i></a></td>
+                       <td style="padding-left:30px;">
                          <form action="/student_teacher/{{ $st->id }}" method="post">
                           {{  csrf_field() }}
                           <input type="hidden" name="_method" value="delete">

@@ -11,10 +11,12 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\StudentTeacher;
 use Illuminate\Support\Facades\Redis;
 
+
 class ProcessUpload implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    //public $timeout = 120;
     protected $file;
     /**
      * Create a new job instance.
@@ -29,7 +31,7 @@ class ProcessUpload implements ShouldQueue
      */
     public function handle() : void
     {
-        Redis::throttle('process_upload')->block(0)->allow(1)->every(30)->then(function () {
+        Redis::throttle('process_upload')->allow(1)->every(100)->then(function () {
            // info('Lock obtained...');
             $data = array_map('str_getcsv', file($this->file));
             foreach ($data as $record) {
@@ -47,7 +49,7 @@ class ProcessUpload implements ShouldQueue
            // Handle job...
         }, function () {
             // Could not obtain lock...
-            return $this->release(5);
+            return $this->release(10);
         });
     }
 }
