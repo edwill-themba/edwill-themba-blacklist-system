@@ -15,3 +15,5 @@
 7. If you have logged successfuly a dashboad will welcome you and you can add student
    and school and view them.
 8. I also imported the database is called jsbclab.sql you can use it.
+9. if you import csv file you need to open another terminal to
+   project directory run this command php artisan queue:work --timeout=10000000
